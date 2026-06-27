@@ -78,6 +78,22 @@ MailEngine returns a success or failure status with a message. No provider names
 
 </details>
 
+<details>
+<summary><strong>🔒 Authorization</strong></summary>
+
+<br/>
+
+Requests to `/send` are authenticated via a Bearer token. MailEngine reads the `Authorization` header, extracts the token, and compares it against the `MAIL_API_KEY` environment variable. A missing or mismatched token gets a `403 Forbidden` before any mail logic runs.
+
+```
+Authorization: Bearer <MAIL_API_KEY>
+```
+
+> [!IMPORTANT]
+> The auth check is enforced at the middleware layer — it sits between the dashboard GET handler and the `/send` route, so unauthenticated requests are rejected before they reach Nodemailer. The dashboard is intentionally public; only write operations require the key.
+
+</details>
+
 ---
 
 ## ⚡ Tech Stack
@@ -146,7 +162,6 @@ The point of building it as a standalone service is that the list above grows wi
 - **No retry queue for failed deliveries** — if SMTP dispatch fails, the error is returned to the caller immediately. Retry logic with backoff is currently the consumer's responsibility. A built-in retry queue is the most significant missing piece.
 - **No email templating engine** — HTML is constructed by the consuming project and passed in the payload; MailEngine renders what it receives. A template layer inside MailEngine would eliminate duplication once multiple consumers start sending structurally similar messages.
 - **No delivery status tracking or webhooks** — MailEngine is fire-and-forget. There is no mechanism to confirm whether an email was delivered, bounced, or opened. Adding provider webhook handling would close that gap.
-- **No service-to-service authentication** — requests are currently trusted at the network level within the VPS internal network. Explicit auth — an API key or signed request header — is the next hardening step before any public-facing exposure.
 
 ---
 
