@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🎵 Muves
+<img src="muves-logo.png" alt="Muves Logo" width="480"/>
+
+<br/>
 
 ### Three private repositories. One working music streaming system.
 #### Built, hosted, and operated without touching a third-party platform for any core function.
