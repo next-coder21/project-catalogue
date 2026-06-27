@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="muves-logo.png" alt="Muves Logo" width="480"/>
+<img src="https://res.cloudinary.com/dokomt4m4/image/upload/v1782547480/uploads/hjeqr18ufniynoab00mp.avif" alt="Muves Logo" width="480"/>
 
 <br/>
 
