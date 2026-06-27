@@ -12,7 +12,7 @@
 [![Framework](https://img.shields.io/badge/Framework-Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://github.com/next-coder21)
 [![Transport](https://img.shields.io/badge/Transport-Nodemailer-22B573?style=for-the-badge)](https://github.com/next-coder21)
 [![Type](https://img.shields.io/badge/Type-Microservice-6366f1?style=for-the-badge)](https://github.com/next-coder21)
-[![Consumed By](https://img.shields.io/badge/Consumed%20By-Muves-F7931A?style=for-the-badge)](https://github.com/next-coder21)
+[![Consumed By](https://img.shields.io/badge/Consumed%20By-Personal%20Projects-F7931A?style=for-the-badge)](https://github.com/next-coder21)
 
 </div>
 
@@ -128,13 +128,13 @@ A shared module means every consuming project bundles email logic, manages its o
 
 ## 🔗 Current Usage
 
-MailEngine is in production, currently consumed by:
+MailEngine is in production, serving as the shared email layer across personal projects:
 
 | Project | Usage |
 |:---|:---|
-| Muves (`kkaudiobk`) | Transactional emails — account verification, password reset OTPs, rate-limit security alerts |
+| Muves (`kkaudiobk`) | Account verification, password reset OTPs, rate-limit security alerts |
 
-The service is designed to be consumed by any future project without modification. The API contract is stable, and the transport layer is entirely internal to MailEngine. A new consumer needs only the endpoint and the field spec.
+The point of building it as a standalone service is that the list above grows without MailEngine changing. Any new project gets email capability by pointing at the same endpoint — no SMTP config to copy, no credentials to manage separately, no transport logic to rewrite.
 
 ---
 
